@@ -1,0 +1,181 @@
+<!-- ================= education.html ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Koushik • Education</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* same base styles as experience.html */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell',sans-serif;background:#020617;color:#e2e8f0;min-height:100vh}
+    .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    .sidebar{background:#020617;border-right:1px solid #1f2937;padding:1.5rem 1.25rem;position:sticky;top:0;height:100vh}
+    .brand{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem}
+    .brand-avatar{width:40px;height:40px;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#0ea5e9);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.9rem}
+    .brand-name{font-weight:700;font-size:1.1rem}
+    .nav-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.75rem}
+    .nav{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+    .nav a{
+      display:flex;align-items:center;gap:.75rem;
+      padding:.6rem .75rem;border-radius:999px;
+      color:#d1d5db;text-decoration:none;font-size:.95rem;
+      font-weight:700;
+      transition:background .2s,color .2s,transform .2s
+    }
+    .nav a span.icon{width:22px;text-align:center;flex-shrink:0}
+    .nav a.active,.nav a:hover{background:#020617;color:#d1d5db;transform:translateX(2px)}
+    .content{padding:2.5rem 3rem 3rem;background:radial-gradient(circle at top,#020617 0,#020617 40%,#020617 100%)}
+    .page-title{font-size:2.4rem;font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+    .page-subtitle{color:#9ca3af;margin-bottom:3rem;font-size:1.1rem}
+    .education-container{display:flex;flex-direction:column;gap:2rem}
+    .card{
+      padding:1.75rem 2rem;border-radius:1.25rem;
+      background:radial-gradient(circle at top left,#0b1120 0,#020617 55%,#020617 100%);
+      border:1px solid #1f2937;transition:transform .2s,box-shadow .2s
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(56,189,248,.1)}
+    .card-header{display:flex;justify-content:space-between;gap:2rem;align-items:flex-start;margin-bottom:1rem}
+    .degree-title{font-size:1.3rem;font-weight:600;color:#e5e7eb;margin-bottom:.35rem;line-height:1.3}
+    .degree-inst{color:#38bdf8;font-weight:600;font-size:1.05rem;margin-bottom:.25rem}
+    .degree-spec{color:#9ca3af;font-size:.95rem;margin-bottom:1rem;line-height:1.5}
+    .stats-row{display:flex;gap:2rem;flex-wrap:wrap}
+    .stat-block{min-width:120px}
+    .stat-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.15rem}
+    .stat-main{font-size:1.3rem;font-weight:700;color:#e5e7eb}
+
+    /* Mobile Optimizations */
+    @media(max-width:1024px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid #1f2937;display:flex;flex-direction:column;gap:1rem;padding:1.25rem}
+      .brand{justify-content:center}
+      .nav-title{display:none}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:0 .5rem}
+      .nav a{padding:.5rem .75rem;font-size:.9rem}
+      .nav a span.icon{font-size:1.1rem}
+      .content{padding:1.75rem 1.25rem 2.5rem}
+      .page-title{font-size:2.1rem}
+      .education-container{gap:1.75rem}
+      .card{padding:1.5rem 1.5rem}
+    }
+
+    @media(max-width:768px){
+      .content{padding:1.5rem 1rem 2rem}
+      .page-title{font-size:1.85rem}
+      .education-container{gap:1.5rem}
+      .card{padding:1.25rem 1.25rem}
+      .card-header{flex-direction:column;gap:1.25rem}
+      .stats-row{justify-content:flex-start}
+      .degree-title{font-size:1.2rem}
+      .degree-inst{font-size:1rem}
+      .stat-main{font-size:1.2rem}
+    }
+
+    @media(max-width:480px){
+      .sidebar{padding:1rem .75rem}
+      .brand-avatar{font-size:.8rem;width:36px;height:36px}
+      .brand-name{font-size:1rem}
+      .nav a{padding:.45rem .6rem;font-size:.85rem}
+      .page-title{font-size:1.7rem}
+      .education-container{gap:1.25rem}
+      .card{padding:1.1rem}
+      .stats-row{gap:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-avatar">MVSK</div>
+        <div class="brand-name">Koushik</div>
+      </div>
+      <div>
+        <div class="nav-title">Navigation</div>
+        <ul class="nav">
+          <li><a href="index.html"><span class="icon">🏠</span>Home</a></li>
+          <li><a href="experience.html"><span class="icon">💼</span>Experience</a></li>
+          <li><a href="education.html"><span class="icon">🎓</span>Education</a></li>
+          <li><a href="certifications.html"><span class="icon">📜</span>Certifications</a></li>
+          <li><a href="projects.html"><span class="icon">🧩</span>Projects</a></li>
+          <li><a href="chatbot.html" class="active"><span class="icon">🤖</span>Chatbot</a></li>
+          <li><a href="extracurriculars.html"><span class="icon">⭐</span>Contact Me</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header>
+        <h1 class="page-title">Education</h1>
+        <p class="page-subtitle">Academic journey from 10th grade through undergraduate studies.</p>
+      </header>
+
+      <section class="education-container">
+        <!-- B.Tech -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="degree-title">B.Tech – Computer Science & Engineering</div>
+              <div class="degree-inst">Vellore Institute of Technology, Chennai</div>
+              <div class="degree-spec">Specialization: AI & Robotics</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-block">
+                <div class="stat-label">CGPA</div>
+                <div class="stat-main">7.38</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Expected Graduation</div>
+                <div class="stat-main">Jun 2026</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Intermediate -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="degree-title">Intermediate Education – Sciences</div>
+              <div class="degree-inst">Gauthami Junior College, Hyderabad</div>
+              <div class="degree-spec">Specialization: Maths, Physics & Chemistry</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-block">
+                <div class="stat-label">Percentage</div>
+                <div class="stat-main">93.9</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Graduated</div>
+                <div class="stat-main">June 2022</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10th Grade -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="degree-title">Secondary Education (10th Grade)</div>
+              <div class="degree-inst">Sri Chaitanya Techno School, Hyderabad</div>
+              <div class="degree-spec">Telangana State Board of Secondary Education</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-block">
+                <div class="stat-label">CGPA</div>
+                <div class="stat-main">10</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Graduated</div>
+                <div class="stat-main">April 2020</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

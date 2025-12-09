@@ -1,0 +1,313 @@
+<!-- ================= certifications.html ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Koushik • Certifications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell',sans-serif;background:#020617;color:#e2e8f0;min-height:100vh}
+    .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    .sidebar{background:#020617;border-right:1px solid #1f2937;padding:1.5rem 1.25rem;position:sticky;top:0;height:100vh}
+    .brand{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem}
+    .brand-avatar{width:40px;height:40px;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#0ea5e9);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.9rem}
+    .brand-name{font-weight:700;font-size:1.1rem}
+    .nav-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.75rem}
+    .nav{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+    .nav a{
+      display:flex;align-items:center;gap:.75rem;
+      padding:.6rem .75rem;border-radius:999px;
+      color:#d1d5db;text-decoration:none;font-size:.95rem;
+      font-weight:700;
+      transition:background .2s,color .2s,transform .2s
+    }
+    .nav a span.icon{width:22px;text-align:center;flex-shrink:0}
+    .nav a.active,.nav a:hover{background:#020617;color:#d1d5db;transform:translateX(2px)}
+    .content{padding:2.5rem 3rem 3rem;background:radial-gradient(circle at top,#020617 0,#020617 40%,#020617 100%)}
+    .page-title{font-size:2.4rem;font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+    .page-subtitle{color:#9ca3af;margin-bottom:3rem;font-size:1.1rem}
+    .certs-container{display:flex;flex-direction:column;gap:1.5rem}
+    .cert-card{
+      width:100%;height:140px;min-height:180px;
+      padding:1.75rem 2rem;border-radius:1.2rem;
+      background:linear-gradient(145deg,#0b1120 0%,#020617 50%,#020617 100%);
+      border:1px solid #1f2937;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:space-between;
+      transition:transform .2s,box-shadow .2s,border-color .2s
+    }
+    .cert-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(56,189,248,.15);
+      border-color:#38bdf8
+    }
+    .cert-content{flex:1}
+    .cert-title{font-size:1.25rem;font-weight:700;margin-bottom:.4rem;color:#e2e8f0;line-height:1.3}
+    .cert-org{color:#38bdf8;font-weight:600;font-size:1rem;margin-bottom:.6rem}
+    .cert-desc{color:#9ca3af;font-size:.95rem;line-height:1.5;max-width:70%}
+    .cert-link{
+      width:48px;height:48px;border-radius:999px;
+      background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+      display:flex;align-items:center;justify-content:center;
+      text-decoration:none;color:#fff;transition:transform .2s,box-shadow .2s;
+      flex-shrink:0;margin-left:1rem
+    }
+    .cert-link:hover{transform:scale(1.1);box-shadow:0 8px 20px rgba(56,189,248,.4)}
+    .cert-link img{width:24px;height:24px}
+
+    /* PDF Modal */
+    .pdf-modal{
+      display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+      background:rgba(2,6,23,.95);backdrop-filter:blur(8px);z-index:1000;
+      align-items:center;justify-content:center;padding:1.5rem
+    }
+    .pdf-modal.active{display:flex}
+    .pdf-container{
+      background:#0b1120;border-radius:1.2rem;border:1px solid #1f2937;
+      width:100%;max-width:950px;max-height:95vh;height:85vh;
+      position:relative;box-shadow:0 25px 50px rgba(0,0,0,.5)
+    }
+    .pdf-viewer{
+      width:100%;height:calc(100% - 60px);border:none;border-radius:1.2rem 1.2rem 0 0
+    }
+    .pdf-header{
+      padding:1.25rem 1.5rem;border-bottom:1px solid #1f2937;
+      display:flex;justify-content:space-between;align-items:center
+    }
+    .pdf-title{font-size:1.2rem;font-weight:600;color:#e2e8f0}
+    .pdf-close{
+      width:36px;height:36px;border-radius:999px;background:#1f2937;
+      border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;transition:all .2s
+    }
+    .pdf-close:hover{background:#ef4444;color:#fff;transform:scale(1.05)}
+
+    /* Image Modal */
+    .image-modal{
+      display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+      background:rgba(2,6,23,.95);backdrop-filter:blur(8px);z-index:1001;
+      align-items:center;justify-content:center;padding:1.5rem
+    }
+    .image-modal.active{display:flex}
+    .image-container{
+      background:#0b1120;border-radius:1.2rem;border:1px solid #1f2937;
+      width:100%;max-width:950px;max-height:95vh;height:85vh;
+      position:relative;box-shadow:0 25px 50px rgba(0,0,0,.5);overflow:hidden
+    }
+    .image-viewer{
+      width:100%;height:calc(100% - 70px);object-fit:contain;
+      border:none;border-radius:1.2rem 1.2rem 0 0;display:block
+    }
+    .image-header{
+      padding:1.25rem 1.5rem;border-bottom:1px solid #1f2937;
+      display:flex;justify-content:space-between;align-items:center
+    }
+    .image-title{font-size:1.2rem;font-weight:600;color:#e2e8f0}
+    .image-close{
+      width:36px;height:36px;border-radius:999px;background:#1f2937;
+      border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;transition:all .2s
+    }
+    .image-close:hover{background:#ef4444;color:#fff;transform:scale(1.05)}
+
+    /* Mobile Optimizations */
+    @media(max-width:1024px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid #1f2937;display:flex;flex-direction:column;gap:1rem;padding:1.25rem}
+      .brand{justify-content:center}
+      .nav-title{display:none}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:0 .5rem}
+      .nav a{padding:.5rem .75rem;font-size:.9rem}
+      .nav a span.icon{font-size:1.1rem}
+      .content{padding:1.75rem 1.25rem 2.5rem}
+      .page-title{font-size:2.1rem}
+      .page-subtitle{font-size:1rem;margin-bottom:2.5rem}
+      .cert-card{padding:1.5rem 1.5rem;height:130px;min-height:130px}
+      .pdf-container{max-width:95vw;height:75vh}
+    }
+    @media(max-width:768px){
+      .content{padding:1.5rem 1rem 2rem}
+      .page-title{font-size:1.85rem}
+      .page-subtitle{margin-bottom:2rem;font-size:.95rem}
+      .cert-card{height:120px;min-height:120px;padding:1.25rem 1.25rem;flex-direction:column;align-items:flex-start;gap:1rem;text-align:left}
+      .cert-title{font-size:1.15rem}
+      .cert-org{font-size:.95rem}
+      .cert-desc{font-size:.9rem;max-width:100%;line-height:1.45}
+      .cert-link{position:absolute;top:1.25rem;right:1.25rem;width:44px;height:44px;margin-left:0}
+      .cert-link img{width:20px;height:20px}
+      .certs-container{gap:1.25rem}
+      .pdf-container{height:85vh}
+      .pdf-header{padding:1rem;flex-direction:column;gap:.75rem;text-align:center}
+    }
+    @media(max-width:480px){
+      .sidebar{padding:1rem .75rem}
+      .brand-avatar{font-size:.8rem;width:36px;height:36px}
+      .brand-name{font-size:1rem}
+      .nav a{padding:.45rem .6rem;font-size:.85rem}
+      .page-title{font-size:1.7rem}
+      .cert-card{height:115px;min-height:115px;padding:1.1rem}
+      .cert-link{width:40px;height:40px;top:1.1rem;right:1.1rem}
+      .pdf-container{max-width:98vw;height:90vh}
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-avatar">MVSK</div>
+        <div class="brand-name">Koushik</div>
+      </div>
+      <div>
+        <div class="nav-title">Navigation</div>
+        <ul class="nav">
+          <li><a href="index.html"><span class="icon">🏠</span>Home</a></li>
+          <li><a href="experience.html"><span class="icon">💼</span>Experience</a></li>
+          <li><a href="education.html"><span class="icon">🎓</span>Education</a></li>
+          <li><a href="certifications.html"><span class="icon">📜</span>Certifications</a></li>
+          <li><a href="projects.html"><span class="icon">🧩</span>Projects</a></li>
+          <li><a href="chatbot.html" class="active"><span class="icon">🤖</span>Chatbot</a></li>
+          <li><a href="extracurriculars.html"><span class="icon">⭐</span>Contact Me</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header>
+        <h1 class="page-title">Certifications & Achievements</h1>
+        <p class="page-subtitle">
+          Formal training and recognitions across data science, leadership and competitive achievements.
+        </p>
+      </header>
+
+      <section class="certs-container">
+        <article class="cert-card">
+          <div class="cert-content">
+            <h2 class="cert-title">Data Science using Python Certified</h2>
+            <p class="cert-org">Edureka</p>
+            <p class="cert-desc">Completed 15+ hands-on ML assignments with end-to-end implementations.</p>
+          </div>
+          <a href="C:\Users\medur\OneDrive\Desktop\portfolio-website\certificates\data science certificate.pdf" class="cert-link data-science-cert" target="_blank" rel="noopener noreferrer" title="View Certificate">📄</a>
+        </article>
+
+        <!-- Other cards remain same -->
+        <article class="cert-card">
+          <div class="cert-content">
+            <h2 class="cert-title">LeetCode Profile</h2>
+            <p class="cert-org">100+ Problems Solved</p>
+            <p class="cert-desc">Strengthened problem-solving using Python, well-versed in SQL queries.</p>
+          </div>
+          <a href="https://leetcode.com/u/Fb6KOfW61B/" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Profile">
+            <img src="https://img.icons8.com/?size=512w&id=9L16NypUzu38&format=png" alt="LeetCode" style="width:24px;height:24px">
+          </a>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-content">
+            <h2 class="cert-title">SDG 4 Coordinator</h2>
+            <p class="cert-org">Sustainable Development Goals</p>
+            <p class="cert-desc">Student coordinator for Quality Education focusing on targets 4.1 and 4.2.</p>
+          </div>
+          <a href="C:\Users\medur\OneDrive\Desktop\portfolio-website\certificates\SDG event.jpg" class="cert-link sdg-cert" target="_blank" rel="noopener noreferrer" title="View Certificate">📜</a>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-content">
+            <h2 class="cert-title">Video Editing & Photography</h2>
+            <p class="cert-org">TLA, VIT Chennai</p>
+            <p class="cert-desc">Content head with 600k+ combined views across platforms.</p>
+          </div>
+          <a href="https://www.instagram.com/reel/DGfN0IDy-0r/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Portfolio">🎥</a>
+        </article>
+
+        <article class="cert-card">
+          <div class="cert-content">
+            <h2 class="cert-title">Data Science Hackathon</h2>
+            <p class="cert-org">VIT Chennai</p>
+            <p class="cert-desc">Secured 7th place out of 93 teams for innovative analytical solutions.</p>
+          </div>
+          <a href="#" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Certificate">🏆</a>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- PDF Modal -->
+  <div class="pdf-modal" id="pdfModal">
+    <div class="pdf-container">
+      <div class="pdf-header">
+        <div class="pdf-title">Data Science Certificate</div>
+        <button class="pdf-close" onclick="closePdfModal()">×</button>
+      </div>
+      <iframe class="pdf-viewer" id="pdfViewer"></iframe>
+    </div>
+  </div>
+
+  <div class="image-modal" id="imageModal">
+    <div class="image-container">
+      <div class="image-header">
+        <div class="image-title">SDG 4 Coordinator Certificate</div>
+        <button class="image-close" onclick="closeImageModal()">×</button>
+      </div>
+      <img class="image-viewer" id="imageViewer" alt="SDG Certificate">
+    </div>
+  </div>
+
+  <script>
+    // Data Science Certificate Modal
+    document.querySelector('.data-science-cert').addEventListener('click', function(e) {
+      e.preventDefault();
+      const pdfPath = 'certificates/data science certificate.pdf'; // CHANGE THIS PATH
+      document.getElementById('pdfViewer').src = pdfPath + '#view=FitH&toolbar=0';
+      document.getElementById('pdfModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closePdfModal() {
+      document.getElementById('pdfModal').classList.remove('active');
+      document.getElementById('pdfViewer').src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('pdfModal').addEventListener('click', function(e) {
+      if (e.target === this) closePdfModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePdfModal();
+    });
+
+    // SDG Image Modal
+    document.querySelector('.sdg-cert').addEventListener('click', function(e) {
+      e.preventDefault();
+      const imagePath = 'certificates/SDG event.jpg'; // CHANGE THIS PATH
+      document.getElementById('imageViewer').src = imagePath;
+      document.getElementById('imageModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeImageModal() {
+      document.getElementById('imageModal').classList.remove('active');
+      document.getElementById('imageViewer').src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close image modal on overlay click
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) closeImageModal();
+    });
+
+    // Close image modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePdfModal();
+        closeImageModal();
+      }
+    });
+
+  </script>
+</body>
+</html>

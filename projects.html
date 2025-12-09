@@ -1,0 +1,216 @@
+<!-- ================= projects.html ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Koushik • Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell',sans-serif;background:#020617;color:#e2e8f0;min-height:100vh}
+    .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    .sidebar{background:#020617;border-right:1px solid #1f2937;padding:1.5rem 1.25rem;position:sticky;top:0;height:100vh}
+    .brand{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem}
+    .brand-avatar{width:40px;height:40px;border-radius:999px;background:linear-gradient(135deg,#3b82f6,#0ea5e9);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.9rem}
+    .brand-name{font-weight:700;font-size:1.1rem}
+    .nav-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.75rem}
+    .nav{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+    .nav a{
+      display:flex;align-items:center;gap:.75rem;
+      padding:.6rem .75rem;border-radius:999px;
+      color:#d1d5db;text-decoration:none;font-size:.95rem;
+      font-weight:700;
+      transition:background .2s,color .2s,transform .2s
+    }
+    .nav a span.icon{width:22px;text-align:center;flex-shrink:0}
+    .nav a.active,.nav a:hover{background:#020617;color:#d1d5db;transform:translateX(2px)}
+    .content{padding:2.5rem 3rem 3rem;background:radial-gradient(circle at top,#020617 0,#020617 40%,#020617 100%)}
+    .page-title{font-size:2.4rem;font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+    .page-subtitle{color:#9ca3af;margin-bottom:3rem;font-size:1.1rem}
+    .projects-container{display:flex;flex-direction:column;gap:1.5rem}
+    .project-card{
+      width:100%;height:200px;min-height:240px;
+      padding:1.75rem 2rem;border-radius:1.2rem;
+      background:linear-gradient(145deg,#0b1120 0%,#020617 50%,#020617 100%);
+      border:1px solid #1f2937;position:relative;overflow:hidden;
+      display:flex;flex-direction:column;
+      transition:transform .2s,box-shadow .2s,border-color .2s
+    }
+    .project-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(56,189,248,.15);
+      border-color:#38bdf8
+    }
+    .project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
+    .project-title{font-size:1.25rem;font-weight:700;color:#e2e8f0;line-height:1.3;margin-bottom:.3rem}
+    .project-date{font-size:.85rem;color:#6b7280;flex-shrink:0}
+    .project-desc{color:#9ca3af;font-size:.95rem;line-height:1.5;margin-bottom:1rem;flex:1}
+    .project-details{color:#9ca3af;font-size:.9rem;line-height:1.6;margin-bottom:.8rem}
+    .project-details ul{margin-left:1.1rem;margin-bottom:.8rem}
+    .project-details li{margin-bottom:.3rem}
+    .badge-row{display:flex;flex-wrap:wrap;gap:.4rem}
+    .badge{
+      padding:.2rem .65rem;border-radius:999px;font-size:.72rem;
+      background:rgba(56,189,248,.1);border:1px solid #38bdf8;color:#38bdf8
+    }
+    .project-link{
+      position:absolute;top:5.4rem;right:2rem;width:44px;height:44px;border-radius:999px;
+      background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+      display:flex;align-items:center;justify-content:center;
+      text-decoration:none;color:#fff;font-size:1rem;
+      transition:transform .2s,box-shadow .2s
+    }
+    .project-link:hover{transform:scale(1.1);box-shadow:0 8px 20px rgba(56,189,248,.4)}
+
+    /* Mobile Optimizations */
+    @media(max-width:1024px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid #1f2937;display:flex;flex-direction:column;gap:1rem;padding:1.25rem}
+      .brand{justify-content:center}
+      .nav-title{display:none}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:0 .5rem}
+      .nav a{padding:.5rem .75rem;font-size:.9rem}
+      .nav a span.icon{font-size:1.1rem}
+      .content{padding:1.75rem 1.25rem 2.5rem}
+      .page-title{font-size:2.1rem}
+      .project-card{padding:1.5rem;height:190px;min-height:190px}
+      .project-link{top:1.5rem;right:1.5rem;width:40px;height:40px}
+    }
+    @media(max-width:768px){
+      .content{padding:1.5rem 1rem 2rem}
+      .page-title{font-size:1.85rem}
+      .project-card{height:180px;min-height:180px;padding:1.25rem}
+      .project-title{font-size:1.15rem}
+      .project-desc,.project-details{font-size:.88rem}
+      .project-link{top:1.25rem;right:1.25rem;width:38px;height:38px;font-size:.95rem}
+      .projects-container{gap:1.25rem}
+    }
+    @media(max-width:480px){
+      .sidebar{padding:1rem .75rem}
+      .brand-avatar{font-size:.8rem;width:36px;height:36px}
+      .brand-name{font-size:1rem}
+      .nav a{padding:.45rem .6rem;font-size:.85rem}
+      .page-title{font-size:1.7rem}
+      .project-card{height:170px;min-height:170px;padding:1.1rem}
+      .project-link{top:1.1rem;right:1.1rem;width:36px;height:36px}
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-avatar">MVSK</div>
+        <div class="brand-name">Koushik</div>
+      </div>
+      <div>
+        <div class="nav-title">Navigation</div>
+        <ul class="nav">
+          <li><a href="index.html"><span class="icon">🏠</span>Home</a></li>
+          <li><a href="experience.html"><span class="icon">💼</span>Experience</a></li>
+          <li><a href="education.html"><span class="icon">🎓</span>Education</a></li>
+          <li><a href="certifications.html"><span class="icon">📜</span>Certifications</a></li>
+          <li><a href="projects.html"><span class="icon">🧩</span>Projects</a></li>
+          <li><a href="chatbot.html" class="active"><span class="icon">🤖</span>Chatbot</a></li>
+          <li><a href="extracurriculars.html"><span class="icon">⭐</span>Contact Me</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header>
+        <h1 class="page-title">Featured Projects</h1>
+        <p class="page-subtitle">Selected work spanning analytics, AI and developer tooling.</p>
+      </header>
+
+      <section class="projects-container">
+        <article class="project-card">
+          <a href="https://medium.com/@medurivskoushik/how-i-built-a-real-time-data-analytics-dashboard-with-html-node-js-6c7c4a1b5acb" class="project-link" title="Know More">➤</a>
+          <div class="project-header">
+            <h2 class="project-title">Real-Time Student Data Analysis</h2>
+            <p class="project-date">📅 January 2025</p>
+          </div>
+          <p class="project-desc">Automated end-to-end pipeline with live dashboards for student performance insights and reporting.</p>
+          <div class="project-details">
+            <ul>
+              <li>Streamed data into AWS RDS and visualized with Power BI.</li>
+              <li>Built REST APIs with Node.js and Express for secure access.</li>
+            </ul>
+          </div>
+          <div class="badge-row">
+            <span class="badge">Node.js</span>
+            <span class="badge">Express</span>
+            <span class="badge">MySQL</span>
+            <span class="badge">Power BI</span>
+            <span class="badge">AWS</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <a href="https://github.com/mvskoushik04/myschool_chatbot_extension" class="project-link" title="Know More">➤</a>
+          <div class="project-header">
+            <h2 class="project-title">AI-Powered Website Chatbot</h2>
+            <p class="project-date">📅 June 2025</p>
+          </div>
+          <p class="project-desc">Intelligent customer support chatbot with voice interface and high intent accuracy.</p>
+          <div class="project-details">
+            <ul>
+              <li>Achieved 92% intent accuracy using Groq API and custom NLP flows.</li>
+              <li>Integrated Google Speech-to-Text for voice conversations.</li>
+            </ul>
+          </div>
+          <div class="badge-row">
+            <span class="badge">React</span>
+            <span class="badge">Groq API</span>
+            <span class="badge">NLP</span>
+            <span class="badge">Voice API</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <a href="certificates\Adaptive_Sleep_Scheduling_in_Wireless_Sensor_Networks_for_enhancing_network_lifetime_using_Bio_Inspired_Hybrid_Optimization_Technique.pdf" class="project-link" title="Know More">📄</a>
+          <div class="project-header">
+            <h2 class="project-title">WSN Energy Optimization</h2>
+            <p class="project-date">📅 May 2025</p>
+          </div>
+          <p class="project-desc">Hybrid MDS-MA algorithm improving wireless sensor network lifetime and efficiency.</p>
+          <div class="project-details">
+            <ul>
+              <li>Reduced energy consumption by 18.7% and extended lifetime by 20.9%.</li>
+              <li>Implemented adaptive sleep scheduling and routing strategies.</li>
+            </ul>
+          </div>
+          <div class="badge-row">
+            <span class="badge">Python</span>
+            <span class="badge">NumPy</span>
+            <span class="badge">Pandas</span>
+            <span class="badge">ML</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <a href="https://medium.com/@medurivskoushik/building-an-llm-powered-chatbot-extension-architecture-tech-stack-workflow-c43f8cc483d4" class="project-link" title="Know More">➤</a>
+          <div class="project-header">
+            <h2 class="project-title">DSA-Genie Chrome Extension</h2>
+            <p class="project-date">📅 May 2025</p>
+          </div>
+          <p class="project-desc">Browser assistant providing real-time explanations and pseudocode for coding problems.</p>
+          <div class="project-details">
+            <ul>
+              <li>Used Groq API for on-page explanations and hints.</li>
+              <li>Added secure bookmarking and YouTube recommendation features.</li>
+            </ul>
+          </div>
+          <div class="badge-row">
+            <span class="badge">React</span>
+            <span class="badge">Vite</span>
+            <span class="badge">Flask</span>
+            <span class="badge">Chrome API</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
