@@ -111,46 +111,6 @@
       display:flex;align-items:center;justify-content:center;transition:all .2s
     }
     .image-close:hover{background:#ef4444;color:#fff;transform:scale(1.05)}
-
-    /* Mobile Optimizations */
-    @media(max-width:1024px){
-      .layout{grid-template-columns:1fr}
-      .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid #1f2937;display:flex;flex-direction:column;gap:1rem;padding:1.25rem}
-      .brand{justify-content:center}
-      .nav-title{display:none}
-      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:0 .5rem}
-      .nav a{padding:.5rem .75rem;font-size:.9rem}
-      .nav a span.icon{font-size:1.1rem}
-      .content{padding:1.75rem 1.25rem 2.5rem}
-      .page-title{font-size:2.1rem}
-      .page-subtitle{font-size:1rem;margin-bottom:2.5rem}
-      .cert-card{padding:1.5rem 1.5rem;height:130px;min-height:130px}
-      .pdf-container{max-width:95vw;height:75vh}
-    }
-    @media(max-width:768px){
-      .content{padding:1.5rem 1rem 2rem}
-      .page-title{font-size:1.85rem}
-      .page-subtitle{margin-bottom:2rem;font-size:.95rem}
-      .cert-card{height:120px;min-height:120px;padding:1.25rem 1.25rem;flex-direction:column;align-items:flex-start;gap:1rem;text-align:left}
-      .cert-title{font-size:1.15rem}
-      .cert-org{font-size:.95rem}
-      .cert-desc{font-size:.9rem;max-width:100%;line-height:1.45}
-      .cert-link{position:absolute;top:1.25rem;right:1.25rem;width:44px;height:44px;margin-left:0}
-      .cert-link img{width:20px;height:20px}
-      .certs-container{gap:1.25rem}
-      .pdf-container{height:85vh}
-      .pdf-header{padding:1rem;flex-direction:column;gap:.75rem;text-align:center}
-    }
-    @media(max-width:480px){
-      .sidebar{padding:1rem .75rem}
-      .brand-avatar{font-size:.8rem;width:36px;height:36px}
-      .brand-name{font-size:1rem}
-      .nav a{padding:.45rem .6rem;font-size:.85rem}
-      .page-title{font-size:1.7rem}
-      .cert-card{height:115px;min-height:115px;padding:1.1rem}
-      .cert-link{width:40px;height:40px;top:1.1rem;right:1.1rem}
-      .pdf-container{max-width:98vw;height:90vh}
-    }
   </style>
 </head>
 <body>
@@ -166,9 +126,9 @@
           <li><a href="index.html"><span class="icon">🏠</span>Home</a></li>
           <li><a href="experience.html"><span class="icon">💼</span>Experience</a></li>
           <li><a href="education.html"><span class="icon">🎓</span>Education</a></li>
-          <li><a href="certifications.html"><span class="icon">📜</span>Certifications</a></li>
+          <li><a href="certifications.html" class="active"><span class="icon">📜</span>Certifications</a></li>
           <li><a href="projects.html"><span class="icon">🧩</span>Projects</a></li>
-          <li><a href="chatbot.html" class="active"><span class="icon">🤖</span>Chatbot</a></li>
+          <li><a href="chatbot.html"><span class="icon">🤖</span>Chatbot</a></li>
           <li><a href="extracurriculars.html"><span class="icon">⭐</span>Contact Me</a></li>
         </ul>
       </div>
@@ -189,7 +149,7 @@
             <p class="cert-org">Oracle</p>
             <p class="cert-desc">Gained Associate level expertise in AI fundamentals and cloud infrastructure.</p>
           </div>
-          <a href="C:\Users\medur\OneDrive\Desktop\portfolio-website\certificates\Oracle Cloud Infrastructure 2025 AI Foundations Associate (1Z0-1122-25).pdf" class="cert-link data-science-cert" target="_blank" rel="noopener noreferrer" title="View Certificate">📄</a>
+          <a href="#" class="cert-link oracle-cert" title="View Certificate">📄</a>
         </article>
 
         <article class="cert-card">
@@ -198,10 +158,9 @@
             <p class="cert-org">Edureka</p>
             <p class="cert-desc">Completed 15+ hands-on ML assignments with end-to-end implementations.</p>
           </div>
-          <a href="C:\Users\medur\OneDrive\Desktop\portfolio-website\certificates\data science certificate.pdf" class="cert-link data-science-cert" target="_blank" rel="noopener noreferrer" title="View Certificate">📄</a>
+          <a href="#" class="cert-link ds-python-cert" title="View Certificate">📄</a>
         </article>
 
-        <!-- Other cards remain same -->
         <article class="cert-card">
           <div class="cert-content">
             <h2 class="cert-title">LeetCode Profile</h2>
@@ -209,7 +168,7 @@
             <p class="cert-desc">Strengthened problem-solving using Python, well-versed in SQL queries.</p>
           </div>
           <a href="https://leetcode.com/u/Fb6KOfW61B/" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Profile">
-            <img src="https://img.icons8.com/?size=512w&id=9L16NypUzu38&format=png" alt="LeetCode" style="width:24px;height:24px">
+            <img src="https://img.icons8.com/?size=512w&id=9L16NypUzu38&format=png" alt="LeetCode">
           </a>
         </article>
 
@@ -219,25 +178,7 @@
             <p class="cert-org">Sustainable Development Goals</p>
             <p class="cert-desc">Student coordinator for Quality Education focusing on targets 4.1 and 4.2.</p>
           </div>
-          <a href="C:\Users\medur\OneDrive\Desktop\portfolio-website\certificates\SDG event.jpg" class="cert-link sdg-cert" target="_blank" rel="noopener noreferrer" title="View Certificate">📜</a>
-        </article>
-
-        <article class="cert-card">
-          <div class="cert-content">
-            <h2 class="cert-title">Video Editing & Photography</h2>
-            <p class="cert-org">TLA, VIT Chennai</p>
-            <p class="cert-desc">Content head with 600k+ combined views across platforms.</p>
-          </div>
-          <a href="https://www.instagram.com/reel/DGfN0IDy-0r/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Portfolio">🎥</a>
-        </article>
-
-        <article class="cert-card">
-          <div class="cert-content">
-            <h2 class="cert-title">Data Science Hackathon</h2>
-            <p class="cert-org">VIT Chennai</p>
-            <p class="cert-desc">Secured 7th place out of 93 teams for innovative analytical solutions.</p>
-          </div>
-          <a href="#" class="cert-link" target="_blank" rel="noopener noreferrer" title="View Certificate">🏆</a>
+          <a href="#" class="cert-link sdg-cert" title="View Certificate">📜</a>
         </article>
       </section>
     </main>
@@ -247,13 +188,14 @@
   <div class="pdf-modal" id="pdfModal">
     <div class="pdf-container">
       <div class="pdf-header">
-        <div class="pdf-title">Data Science Certificate</div>
+        <div class="pdf-title"></div>
         <button class="pdf-close" onclick="closePdfModal()">×</button>
       </div>
       <iframe class="pdf-viewer" id="pdfViewer"></iframe>
     </div>
   </div>
 
+  <!-- Image Modal -->
   <div class="image-modal" id="imageModal">
     <div class="image-container">
       <div class="image-header">
@@ -265,14 +207,24 @@
   </div>
 
   <script>
-    // Data Science Certificate Modal
-    document.querySelector('.data-science-cert').addEventListener('click', function(e) {
+    // Oracle Certificate Modal
+    document.querySelector('.oracle-cert').addEventListener('click', function(e) {
       e.preventDefault();
-      const pdfPath = 'certificates/data science certificate.pdf'; // CHANGE THIS PATH
-      document.getElementById('pdfViewer').src = pdfPath + '#view=FitH&toolbar=0';
+      openPdf('certificates/oracle-ai-foundations.pdf', 'Oracle AI Foundations Certificate');
+    });
+
+    // Data Science Certificate Modal
+    document.querySelector('.ds-python-cert').addEventListener('click', function(e) {
+      e.preventDefault();
+      openPdf('certificates/data-science-python.pdf', 'Data Science using Python Certificate');
+    });
+
+    function openPdf(path, title) {
+      document.querySelector('.pdf-title').innerText = title;
+      document.getElementById('pdfViewer').src = path + '#view=FitH&toolbar=0';
       document.getElementById('pdfModal').classList.add('active');
       document.body.style.overflow = 'hidden';
-    });
+    }
 
     function closePdfModal() {
       document.getElementById('pdfModal').classList.remove('active');
@@ -280,12 +232,10 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Close modal on overlay click
     document.getElementById('pdfModal').addEventListener('click', function(e) {
       if (e.target === this) closePdfModal();
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closePdfModal();
     });
@@ -293,8 +243,7 @@
     // SDG Image Modal
     document.querySelector('.sdg-cert').addEventListener('click', function(e) {
       e.preventDefault();
-      const imagePath = 'certificates/SDG event.jpg'; // CHANGE THIS PATH
-      document.getElementById('imageViewer').src = imagePath;
+      document.getElementById('imageViewer').src = 'certificates/SDG event.jpg';
       document.getElementById('imageModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -305,19 +254,16 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Close image modal on overlay click
     document.getElementById('imageModal').addEventListener('click', function(e) {
       if (e.target === this) closeImageModal();
     });
 
-    // Close image modal on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closePdfModal();
         closeImageModal();
       }
     });
-
   </script>
 </body>
 </html>
